@@ -11,23 +11,35 @@ import Mapbox
 
 struct ContentView: View {
 
-    @State var annotations: [MGLPointAnnotation] = [
-        MGLPointAnnotation(title: "Mapbox",
-                           coordinate: .init(latitude: 37.791434, longitude: -122.396267))
-    ]
+    @State var annotations: [MGLPointAnnotation] = []
+    @State private var draggedOffset: CGSize = .zero
 
     var body: some View {
-        TabView {
-            MapView(annotations: $annotations)
-            .centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324))
-            .zoomLevel(16)
-                .tabItem {
-                    Text("Map")
-            }
+        GeometryReader { geometry in
+            ZStack {
+                MapView(annotations: self.$annotations)
+                .centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324))
+                .zoomLevel(16)
+                .edgesIgnoringSafeArea([.top, .bottom])
 
-            BikeShareList()
-                .tabItem {
-                    Text("List")
+                HStack {
+                    VStack {
+                        Spacer()
+                        BikeShareList()
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: geometry.size.height / 2)
+                        .background(Color.green)
+                        .offset(y: self.draggedOffset.height)
+                        .gesture(DragGesture()
+                            .onChanged { value in
+                                self.draggedOffset = value.translation
+                            }
+                            .onEnded { value in
+                                self.draggedOffset = CGSize(width: .greatestFiniteMagnitude, height: -(geometry.size.height / 2))
+                            }
+                        )
+                    }
+                }
+                .edgesIgnoringSafeArea(.bottom)
             }
         }
     }
