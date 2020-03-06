@@ -12,7 +12,7 @@ import Mapbox
 struct ContentView: View {
 
     @State var annotations: [MGLPointAnnotation] = []
-    @State private var draggedOffset: CGSize = .zero
+    @State private var draggedOffset: CGFloat = CGFloat(-88)
 
     var body: some View {
         GeometryReader { geometry in
@@ -26,15 +26,32 @@ struct ContentView: View {
                     VStack {
                         Spacer()
                         BikeShareList()
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: geometry.size.height / 2)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: geometry.size.height)
                         .background(Color.green)
-                        .offset(y: self.draggedOffset.height)
+                        .offset(y: geometry.size.height + self.draggedOffset)
                         .gesture(DragGesture()
                             .onChanged { value in
-                                self.draggedOffset = value.translation
+                                print(value.translation.height)
+                                // look into this a bbit more
+//                                if value.translation.height < 0 {
+//                                    self.draggedOffset = value.translation.height + 88
+//                                } else {
+//                                    self.draggedOffset = -value.translation.height - 88
+//                                }
                             }
                             .onEnded { value in
-                                self.draggedOffset = CGSize(width: .greatestFiniteMagnitude, height: -(geometry.size.height / 2))
+                                // These animations are completed
+                                withAnimation(.spring()) {
+                                    if value.translation.height < -125 && value.translation.height > -300 {
+                                        self.draggedOffset = -geometry.size.height / 2
+                                    } else if value.translation.height < 0  {
+                                        self.draggedOffset =  -geometry.size.height
+                                    } else if value.translation.height > 125 && value.translation.height < 300 {
+                                        self.draggedOffset = -geometry.size.height / 2
+                                    } else {
+                                        self.draggedOffset = -88
+                                    }
+                                }
                             }
                         )
                     }
