@@ -18,6 +18,7 @@
 		066D62132410A3BA006F1DCA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 066D62112410A3BA006F1DCA /* LaunchScreen.storyboard */; };
 		066D621E2410A3BA006F1DCA /* BikeShareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D621D2410A3BA006F1DCA /* BikeShareTests.swift */; };
 		066D62292410A3BB006F1DCA /* BikeShareUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D62282410A3BB006F1DCA /* BikeShareUITests.swift */; };
+		066D868B241312C800B47C08 /* BikeShareCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066D868A241312C800B47C08 /* BikeShareCard.swift */; };
 		1E6820938E69789B2C178EC2 /* Pods_BikeShare.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C63002A5EEB4D9F1D3434201 /* Pods_BikeShare.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		066D62242410A3BB006F1DCA /* BikeShareUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeShareUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		066D62282410A3BB006F1DCA /* BikeShareUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareUITests.swift; sourceTree = "<group>"; };
 		066D622A2410A3BB006F1DCA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		066D868A241312C800B47C08 /* BikeShareCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeShareCard.swift; sourceTree = "<group>"; };
 		717EDA6EA092DDA646DA969D /* Pods-BikeShare.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.release.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.release.xcconfig"; sourceTree = "<group>"; };
 		77A1253C8F0BA16A612F2148 /* Pods-BikeShare.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BikeShare.debug.xcconfig"; path = "Target Support Files/Pods-BikeShare/Pods-BikeShare.debug.xcconfig"; sourceTree = "<group>"; };
 		C63002A5EEB4D9F1D3434201 /* Pods_BikeShare.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BikeShare.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 				066D62062410A3B9006F1DCA /* AppDelegate.swift */,
 				066D62082410A3B9006F1DCA /* SceneDelegate.swift */,
 				066D620A2410A3B9006F1DCA /* ContentView.swift */,
+				066D868A241312C800B47C08 /* BikeShareCard.swift */,
 				0666E54E24111F6000090C3F /* BikeShareWorker.swift */,
 				0666E5482410EDA400090C3F /* Map View */,
 				0666E54D2410EE4100090C3F /* Bike Share List */,
@@ -362,6 +365,7 @@
 			files = (
 				066D62072410A3B9006F1DCA /* AppDelegate.swift in Sources */,
 				0666E54C2410EDD800090C3F /* BikeShareList.swift in Sources */,
+				066D868B241312C800B47C08 /* BikeShareCard.swift in Sources */,
 				0666E54F24111F6000090C3F /* BikeShareWorker.swift in Sources */,
 				0666E54A2410EDBA00090C3F /* MapView.swift in Sources */,
 				066D62092410A3B9006F1DCA /* SceneDelegate.swift in Sources */,
