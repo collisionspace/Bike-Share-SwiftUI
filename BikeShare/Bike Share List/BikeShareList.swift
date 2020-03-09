@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct BikeShareList: View {
+
+    @Binding var bikeShares: [BikeShareCity]
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            List(bikeShares) { bikeShare in
+                VStack(alignment: .leading) {
+                    Text(bikeShare.name ?? "nil")
+                    Text(bikeShare.location.city ?? "nil")
+                }
+            }
+        }
     }
 }
 
-struct BikeShareList_Previews: PreviewProvider {
-    static var previews: some View {
-        BikeShareList()
-    }
-}

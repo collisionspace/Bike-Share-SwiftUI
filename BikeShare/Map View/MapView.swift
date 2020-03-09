@@ -9,52 +9,22 @@
 import SwiftUI
 import Mapbox
 
-extension MGLPointAnnotation {
-    convenience init(title: String, coordinate: CLLocationCoordinate2D) {
-        self.init()
-        self.title = title
-        self.coordinate = coordinate
-    }
-}
-
 struct MapView: UIViewRepresentable {
 
     @Binding var annotations: [MGLPointAnnotation]
 
-    private let mapView: MGLMapView = MGLMapView(frame: .zero, styleURL: MGLStyle.streetsStyleURL)
-
-    func makeUIView(context: UIViewRepresentableContext<MapView>) -> MGLMapView {
+    func makeUIView(context: Context) -> MGLMapView {
+        let mapView: MGLMapView = MGLMapView()
+        mapView.delegate = context.coordinator
         return mapView
     }
-    
-    func updateUIView(_ uiView: MGLMapView, context: UIViewRepresentableContext<MapView>) {
-        updateAnnotations()
-    }
 
-    func styleURL(_ styleURL: URL) -> MapView {
-        mapView.styleURL = styleURL
-        return self
-    }
-
-    func centerCoordinate(_ centerCoordinate: CLLocationCoordinate2D) -> MapView {
-        mapView.centerCoordinate = centerCoordinate
-        return self
-    }
-
-    func zoomLevel(_ zoomLevel: Double) -> MapView {
-        mapView.zoomLevel = zoomLevel
-        return self
+    func updateUIView(_ view: MGLMapView, context: Context) {
+        view.addAnnotations(annotations)
     }
 
     func makeCoordinator() -> MapView.Coordinator {
         Coordinator(self)
-    }
-
-    private func updateAnnotations() {
-        if let currentAnnotations = mapView.annotations {
-            mapView.removeAnnotations(currentAnnotations)
-        }
-        mapView.addAnnotations(annotations)
     }
 
     final class Coordinator: NSObject, MGLMapViewDelegate {

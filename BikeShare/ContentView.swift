@@ -7,29 +7,25 @@
 //
 
 import SwiftUI
-import Mapbox
+import MapKit
 
 struct ContentView: View {
 
-    @State var annotations: [MGLPointAnnotation] = [
-        MGLPointAnnotation(title: "Mapbox",
-                           coordinate: .init(latitude: 37.791434, longitude: -122.396267))
-    ]
+    @ObservedObject var fetcher = BikeShareFetcher()
 
     var body: some View {
         TabView {
-            MapView(annotations: $annotations)
-            .centerCoordinate(.init(latitude: 37.791293, longitude: -122.396324))
-            .zoomLevel(16)
-                .tabItem {
-                    Text("Map")
+            MapView(annotations: self.$fetcher.annotations)
+            .tabItem {
+                Image(systemName: "map")
+                Text("Map")
             }
 
-            BikeShareList()
-                .tabItem {
-                    Text("List")
+            BikeShareList(bikeShares: self.$fetcher.bikeShares)
+            .tabItem {
+                Text("List")
             }
-        }
+        }.onAppear(perform: fetcher.load)
     }
 }
 
